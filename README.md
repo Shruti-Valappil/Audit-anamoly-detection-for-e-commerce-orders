@@ -1,25 +1,46 @@
-# E-Commerce Audit Anomaly Dashboard (Olist Dataset)
+# 🧾 Audit Anomaly Detection for E-Commerce Orders
 
-This project identifies high-risk anomalies in an e-commerce dataset to simulate internal audit support for a Business Intelligence role. Using the Brazilian Olist dataset, I applied data cleaning and anomaly detection in Python, then visualized the results in Tableau.
+This project identifies and visualizes anomalies in customer order behavior using data from the Brazilian e-commerce platform Olist. It is designed as an internal audit analytics project to uncover issues in logistics, pricing, and customer satisfaction that may go unnoticed in day-to-day operations.
 
-## Objectives
-- Detect transaction anomalies that may indicate fraud, pricing errors, or operational issues
-- Create an interactive audit dashboard to support internal investigations
+## 📁 Dataset
 
-## Key Anomalies Flagged
-1. **High-Quantity Orders** – Possible bulk misuse or reseller behavior
-2. **Overpriced Products** – Prices >3× category median
-3. **Frequent 1-Star Reviewers** – Potential refund abusers
-4. **Suspicious Payments** – $0 or overpaid orders
-5. **Late Deliveries + Bad Reviews** – Service failures tied to poor customer feedback
+The merged dataset includes key tables from the Olist database:
+- Orders
+- Order Items
+- Products
+- Customers
+- Payments
+- Reviews
+- Sellers
+- Product Category Translations
 
-## Tools Used
-- **Python (Pandas)** for ETL and anomaly detection
-- **Tableau** for audit visualization
-- **Jupyter Notebook** for preprocessing
+## 🔍 Anomalies Detected
 
-## Dataset
-Brazilian E-Commerce Public Dataset by [Olist (Kaggle)](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce)
+The following five anomalies were flagged:
 
-## Outcome
-An audit-ready dashboard that highlights key risks in order, payment, product, and review data—aligned with real-world internal audit analysis.
+1. **Late Deliveries**
+   - Orders where the delivered date exceeds the estimated delivery date.
+2. **High Freight Charges Relative to Price**
+   - Orders where freight cost is greater than the product price.
+3. **Price Outliers**
+   - Products priced significantly above or below the IQR (Interquartile Range).
+4. **Low Review Score with High Price**
+   - Expensive products (`> 75th percentile`) with poor customer ratings (`≤ 2`).
+5. **Duplicate Order IDs**
+   - Multiple rows with the same `order_id`, suggesting possible duplication or mismatched items.
+
+Each anomaly is flagged as a boolean column and also summarized in a new column: `anomaly_type`.
+
+## ⚙️ Technologies Used
+
+- **Python** (Pandas, NumPy)
+- **Jupyter Notebook**
+- **Tableau** (for dashboard visualization)
+- **CSV** export for Tableau integration
+
+## 📊 Tableau Dashboard
+
+A dashboard was created in Tableau Public (link optional) featuring:
+- KPI cards for each anomaly type
+- Scatter plots and bar charts
+- Filters by product category, customer state, and anomaly type
