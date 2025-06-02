@@ -37,3 +37,9 @@ Each anomaly is flagged as a boolean column and also summarized in a new column:
 - **Jupyter Notebook**
 - **Tableau** (for dashboard visualization)
 - **CSV** export for Tableau integration
+
+## 📊 Tableau Dashboard
+
+A dashboard was created in Tableau Public featuring:
+- Scatter plots and bar charts
+- Filters by product category, customer state, and anomaly type
